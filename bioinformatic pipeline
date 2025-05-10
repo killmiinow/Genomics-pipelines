@@ -84,3 +84,4 @@ mkdir -p ./mash
 cd ./
 
 mash sketch -o ./mash/all.msh ./mags_for_mash/*.fasta
+mash dist ./all.msh > ./distances.tab
