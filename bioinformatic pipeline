@@ -46,7 +46,7 @@ module load krakentools
 mkdir -p /nobackup/vdvk82/Kraken_DC02
 kraken2 --db ./my_kraken_db --output ./Kraken_DC02/classification.txt --report ./Kraken_DC02/report.txt ./Flye_DC02/assembly.fasta
 
-cd /nobackup/vdvk82
+cd ./
 module load maxbin2
 run_MaxBin.pl
 mkdir -p ./maxbin_output_DC02
@@ -77,7 +77,12 @@ for bin in ./maxbin_output_DC02/*.fa ./maxbin_output_DC02/*.fna; do
 done
 
 echo "All bins processed successfully!"
-
+module load mafft
+for i in $(seq -w 1 12); do
+  input="./checkM_output_DH02/bins/maxbin.${i}/genes.faa"
+  output="./mafft_DH02/${i#0}_genes_aligned.faa"
+  mafft --auto "$input" > "$output"
+done
 module load mash
 
 mkdir -p ./mash
