@@ -79,10 +79,11 @@ done
 echo "All bins processed successfully!"
 module load mafft
 for i in $(seq -w 1 12); do
-  input="./checkM_output_DH02/bins/maxbin.${i}/genes.faa"
-  output="./mafft_DH02/${i#0}_genes_aligned.faa"
+  input="./checkM_output_DC02/bins/maxbin.${i}/genes.faa"
+  output="./mafft_DC02/${i#0}_genes_aligned.faa"
   mafft --auto "$input" > "$output"
 done
+
 module load mash
 
 mkdir -p ./mash
